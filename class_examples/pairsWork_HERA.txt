@@ -1,0 +1,32 @@
+//DLABEL(x) INTEGER(8)  -> x = 8
+// couldn't find OPCODE  
+//DLABEL(y) INTEGER(3) -> y = 3
+// couldn't find OPCODE 
+//CBON() -> carry block ON 
+
+//SET(R1, x) --> Setting R1 as x (8) 
+//SETLO
+E 1 8
+
+//SETHI
+F 1 8 
+
+//LOAD  -> R2 = R1 
+8 2 0 1
+
+// ADD -> R5 = R4 + R2
+A 5 4 2 
+
+// print statements 
+
+// INC -> R3 = R3 + 1
+3 3 1 10 ?????
+
+// STORE  -> R3 = R5
+6 5 0 3 
+
+// LOAD -> R6 = R3 
+8 6 0 3 
+
+// HALT
+0 

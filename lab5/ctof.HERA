@@ -1,0 +1,19 @@
+#include <HERA.h>
+#include <HERA-print.h>
+
+void HERA_main(){
+
+CBON()
+
+//DLABEL(c) INTEGER(10) // not working?
+
+SET(R1, 10) // setting R1 as c
+SET(R3, 30) // constant being added
+ADD(R1, R1, R1) 
+ADD(R2, R1, R3)
+
+print_reg(R2)
+
+HALT()
+
+}

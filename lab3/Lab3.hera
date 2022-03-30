@@ -1,0 +1,40 @@
+#include <HERA.h> 
+#include <HERA-print.h> 
+
+void HERA_main(){
+
+CBON()
+
+SET(R1, 30) // V, value of the item we vend  
+SET(R2, 25) // c, the coin value 
+SET(R3, 4) // N, the number of coins entered 
+
+SET(R4, 0) // current value in machine 
+
+LABEL(loopTop) // top of while loop 
+CMP(R3, R0) // R3 > 0 
+
+BLE(done) 
+DEC(R3, 1) // R3 = R3 - 1
+ADD(R4, R4, R2) // R4 = R4 + R2
+print("Read a coin, now holding") // for debugging 
+print_reg(R4) 
+
+CMP(R4, R1) // if R4 >= R1
+
+BL(ifBlock) 
+SUB(R4, R4, R1) // R4 = R4 - R1
+print("Vend, remaining value is: ") // for debugging 
+print_reg(R4) 
+BR(loopTop) // back to top of while statement
+
+LABEL(ifBlock) // else condition for if statement
+BR(loopTop)  // back to top of while statement 
+
+LABEL(done) 
+print("Done, value of change returned is: ") // for debugging 
+print_reg(R4)  
+
+HALT()
+
+} 

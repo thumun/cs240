@@ -1,0 +1,64 @@
+#include <HERA.h> 
+#include <HERA-print.h> 
+
+void HERA_main(){
+
+CBON()
+
+SET(R1, 0) // number of quarters entered
+SET(R2, 0) // number of dimes entered 
+
+SET(R7, 30) // vend amount  
+
+SET(R8, 25) // quarter = 25 
+SET(R5, 10) // dime = 10 
+SET(R9, 5)  // nickel = 5 
+
+SET(R3, 1) // isVending; 1 = yes, 0 = no  
+
+// for num quarters & num dimes -> amount in cents   
+MUL(R8, R1, R8)
+MUL(R5, R2, R5) 
+
+// adding amount into R6 
+ADD(R6, R8, R5)  
+
+// seeing if alright to vend 
+CMP(R6, R7) 
+
+// if yes, vend and output change
+BGE(vend)
+
+// if no, output change but no vend 
+BL(nope) 
+
+// print vend if 30 cents
+LABEL(vend)
+SUB(R6, R6, R7) // getting change by sub vend amount from total amount 
+print_reg(R3) // printing that vended 
+BR(looptop)
+
+// print no vend if less 
+LABEL(nope) 
+SUB(R3, R3, R3)  
+print_reg(R3) // printing vend (not vended)
+
+// then leaves num nickels dispensed in R4 
+LABEL(looptop)
+CMP(R6, R0) // comparing total amount with zero = to see when to stop loop to calc change 
+
+BLE(changeout)
+
+INC(R4, 1) // adding a nickel to output 
+SUB(R6, R6, R9) // subtracting from total amount 
+
+BR(looptop) 
+
+LABEL(changeout)
+print_reg(R4) // for debugging -> amount of nickels as output 
+
+
+HALT()
+}
+
+

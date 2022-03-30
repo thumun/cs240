@@ -1,0 +1,23 @@
+//Neha Thumu guesses 
+
+//notes:
+// SET does both SETLO and SETHIGH 
+
+//SET(R1, 7) 
+e107
+f100
+
+//SET(R2, 3) 
+e103
+f200
+
+//ADD(R3, R1, R2) 
+a312
+
+//SET(R5, 40) 
+e528
+f500
+
+//HALT
+0000
+

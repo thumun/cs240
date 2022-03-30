@@ -1,0 +1,27 @@
+SETLO(R1, 0) // A
+SETLO(R2, 0) // B
+SETLO(R3, 0) // C
+
+SETLO(R4, 1) // constant 
+
+NOT(R5, R1) // A'
+AND(R5, R4, R5)
+
+NOT(R6, R2) // B' 
+AND(R6, R4, R6)   
+
+AND(R2, R5, R2) // A' ^ B 
+AND(R3, R6, R3) // B' ^ C
+
+OR(R2, R2, R3) // in paren 
+
+NOT(R2, R2) 
+
+OR(R1, R5, R1) // A' V A 
+
+AND(R1, R2, R1) 
+
+print_reg(R1) 
+
+
+

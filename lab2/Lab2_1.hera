@@ -1,0 +1,92 @@
+#include <HERA.h> 
+#include <HERA-print.h> 
+
+void HERA_main(){
+
+CBON()
+
+// 1.) test
+//SET(R1, 200)
+//SET(R2, 10)
+
+// 2.) test 
+//SET(R1, 200) 
+//SET(R2, -10)
+
+// 3.) test 
+//SET(R1, -200) 
+//SET(R2, 10) 
+
+// 4.) test 
+SET(R1, 20000) 
+SET(R2, 1000) 
+
+// 5.) test 
+//SET(R1, 40000)
+//SET(R2, 2000) 
+
+// 6.) test 
+//SET(R1, -20000)
+//SET(R2, 62000)   
+
+ADD(R3, R1, R2) 
+ADD(R3, R3, R1) 
+
+print_reg(R3) // printing R1+R1+R2
+
+SUB(R4, R1, R2)
+SUB(R4, R4, R2) 
+
+print_reg(R4) // printing R1-R2-R2
+
+/* Answers: 
+
+1.) 
+	a.) R1+R1+R2 = 410  
+	b.) R1-R2-R2 = 179 
+
+2.)
+	a.) R1+R1+R2 = 390 
+	b.) R1-R2-R2 = 220
+
+3.) 
+	a.) R1+R1+R2 = -390 = 65146
+	b.) R1-R2-R2 = -220 = 65316 
+
+unsigned interpretations are incorrect 
+
+4.) 
+	a.) R1+R1+R2 = -24536 = 41000
+	b.) R1-R2-R2 = 18000
+ 
+unsigned interpretation of a.) is right but signed it incorrect 
+
+5.) 
+	a.) R1+R1+R2 = 16464
+	b.) R1-R2-R2 = -29536 = 36000
+
+a.) wrong because of overflow (addition greater than 65,535)
+for b.) unsigned is correct  
+
+6.) 
+	a.) R1+R1+R2 = 22000
+	b.) R1-R2-R2 = -12928 = 52608
+
+b.) wrong due to overflow
+
+How HERA hendles negative numbers during addition and subtraction: 
+
+HERA handles negative and positive numbers properly as long as the arithmetic operations 
+done with these numbers/the numbers themselves do not overflow the registers. 
+
+The cases where they overflow can be seen in tests 5 and 6. Where the overflow causes the 
+outputs to be incorrect. 
+
+For test 4, the reason why the unsigned is right is due to the number being big enough to also 
+fill the signed bit spot. (As such, the signed version of the output is also displayed.)
+
+*/ 
+
+
+HALT() 
+} 

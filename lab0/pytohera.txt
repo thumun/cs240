@@ -1,0 +1,5 @@
+SETLO(R1, 5)
+SETLO(R2, 3)
+SETLO(Rt, 2) 
+MUL(R2, R2, Rt)
+ADD(R3, R1, R2)

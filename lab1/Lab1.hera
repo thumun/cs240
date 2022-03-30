@@ -1,0 +1,44 @@
+#include <HERA.h> 
+#include <HERA-print.h> 
+
+void HERA_main(){
+
+// initializing A, B, C
+SET(R1, 1)
+SET(R2, 1)
+SET(R3, 1)
+
+SET(R4, 1) // const 1
+
+// A' - 1
+NOT(R5, R1)
+AND(R5, R4, R5)
+
+// B' - 0
+NOT(R6, R2)
+AND(R6, R4, R6)
+
+// A' ^ B - 1
+AND(R2, R5, R2)
+
+// B' ^ C - 0
+AND(R3, R6, R3)
+
+// (A' ^ B) v (B' ^ C) - 1
+OR(R2, R2, R3)
+
+// ((A' ^ B) v (B' ^ C))' - 0
+NOT(R2, R2)
+AND(R2, R4, R2)
+
+// A ^ ((A' ^ B) v (B' ^ C))'
+AND(R2, R1, R2)
+
+// A' v A ^ ((A' ^ B) v (B' ^ C))'
+OR(R1, R5, R2)
+
+print_reg(R1)
+
+HALT()
+}
+
