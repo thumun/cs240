@@ -1,2 +1,3 @@
 # cs240
-labs
+Labs for computer architecture 
+[currently on Lab 6 : working from Lab 5]
